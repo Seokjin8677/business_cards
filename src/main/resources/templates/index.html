@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Business Card Management</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+        .testimonial-card .card-up {
+            height: 120px;
+            overflow: hidden;
+            border-top-left-radius: .25rem;
+            border-top-right-radius: .25rem;
+        }
+
+        .aqua-gradient {
+            background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
+        }
+
+        .testimonial-card .avatar {
+            width: 120px;
+            margin-top: -60px;
+            overflow: hidden;
+            border: 5px solid #fff;
+            border-radius: 50%;
+        }
+    </style>
+
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+
+<main>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light mb-3">명함을 만들어보세요</h1>
+                <div class="col">
+                    <div class="card testimonial-card mt-2 mb-3">
+                        <div class="card-up aqua-gradient"></div>
+                        <div class="avatar mx-auto white">
+                            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2831%29.jpg"
+                                 class="rounded-circle img-fluid"
+                                 alt="woman avatar">
+                        </div>
+                        <div class="card-body text-center">
+                            <q class="text-muted">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Eos, adipisci
+                            </q>
+                            <hr/>
+                            <h5 class="text-end font-weight-bold">명함관리주식회사</h5>
+                            <div class="d-flex align-items-center justify-content-end">
+                                <h6 class="card-subtitle text-muted pe-2">CEO</h6>
+                                <h5 class="card-subtitle">홍길동</h5>
+                            </div>
+                            <p class="text-start fw-light fs-5 m-0"><i class="bi bi-building">&nbsp;</i>대구광역시 북구 복현로 35</p>
+                            <p class="text-start fw-light fs-5 m-0"><i class="bi bi-telephone-fill">&nbsp;</i>053-940-5114</p>
+                            <p class="text-start fw-light fs-5 m-0"><i class="bi bi-mailbox2">&nbsp;</i>yju@yju.ac.kr</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="lead text-muted">
+                    오직 당신을 위한 명함을 만들고 자신의 개성을 표현하여 당신이 특별한 사람인 것을 사람들에게 보여주세요. 혹은 특별한 사람을 위한
+                    명함을 만들어 당신의 마음을 표현하는 것도 자유입니다. 지금 당장 만들어보세요.
+                </p>
+
+                <p class="mb-0">
+                    <a href="/cards" class="btn btn-primary my-2">명함 보러가기</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+</main>
+<div th:replace="~{fragments/footer :: footer}"/>
+</body>
+</html>

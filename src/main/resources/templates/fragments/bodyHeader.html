@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:fragment="bodyHeader">
+    <style>
+        @media screen and (max-width: 768px) {
+            .header-link {
+                font-size: 1rem;
+            }
+        }
+    </style>
+<link href="/css/bodyHeader.css" rel="stylesheet">
+    <nav class="navbar navbar-expand-lg navbar-dark header nav-header" aria-label="Eighth navbar example">
+        <div class="container">
+            <a class="navbar-brand header-link" href="/"><strong>Business Cards&nbsp;&nbsp;|&nbsp;&nbsp;</strong>
+                명함 관리 시스템</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07"
+                    aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample07">
+                <div class="me-auto"></div>
+                <div class="d-flex">
+                    <ul sec:authorize="isAnonymous()" class="navbar-nav me-auto d-flex">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/signin">로그인</a>
+                        </li>
+                    </ul>
+                    <ul sec:authorize="isAuthenticated()" class="navbar-nav me-auto d-flex">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/cards/create">명함생성</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/cards">명함목록</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/logout">로그아웃</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</html>

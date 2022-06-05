@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Business Card Management</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <link href="/css/cardList.css" rel="stylesheet">
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+
+
+<main>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <div class="col">
+                    <div class="card testimonial-card mt-2 mb-3">
+                        <div class="card-up aqua-gradient"></div>
+                        <div class="avatar mx-auto white">
+                            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2831%29.jpg"
+                                 th:src="${card.imageUrl}"
+                                 class="rounded-circle img-fluid"
+                                 alt="avatar">
+                        </div>
+                        <div class="card-body text-center">
+                            <q class="text-muted" th:text="${card.getTitle()}">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Eos, adipisci
+                            </q>
+                            <hr/>
+                            <h5 class="text-end font-weight-bold" th:text="${card.getCompany()}">회사</h5>
+                            <div class="d-flex align-items-center justify-content-end">
+                                <h6 class="card-subtitle text-muted pe-2" th:text="${card.getJobTitle()}">직급</h6>
+                                <h5 class="card-subtitle" th:text="${card.getName()}">이름</h5>
+                            </div>
+                            <p class="text-start fw-light fs-5 m-0" th:inline="text">
+                                <i class="bi bi-building">&nbsp;</i>[[${card.getAddress()}]]
+                            </p>
+                            <p class="text-start fw-light fs-5 m-0" th:inline="text">
+                                <i class="bi bi-telephone-fill">&nbsp;</i>[[${card.getTel()}]]
+                            </p>
+                            <p class="text-start fw-light fs-5 m-0" th:inline="text">
+                                <i class="bi bi-mailbox2">&nbsp;</i>[[${card.getEmail()}]]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div sec:authorize="isAuthenticated()" class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <th:block th:if="${isOwner}">
+                        <button class="btn btn-primary me-md-1" th:onclick="|location.href='@{/cards/edit/{id}(id=${card.getId()})}'|">수정</button>
+                        <form class="row m-0" th:action="@{/cards/{id}(id=${card.getId()})}" th:method="delete">
+                            <button class="btn btn-danger" type="submit">삭제</button>
+                        </form>
+                    </th:block>
+                </div>
+                <div class="mt-2">
+                    <div class="d-flex align-items-center">
+                        <h5 class="me-1">작성자:</h5>
+                        <h5 th:text="${nickname}">김개동</h5>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <h5 class="me-1">작성일:</h5>
+                        <h5 th:text="${#temporals.format(card.getCreatedDate(), 'yyyy.MM.dd HH:mm:ss')}">작성일</h5>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <h5 class="me-1">수정일:</h5>
+                        <h5 th:text="${#temporals.format(card.getModifiedDate(), 'yyyy.MM.dd HH:mm:ss')}">수정일</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<div th:replace="~{fragments/footer :: footer}"/>
+</body>
+</html>
