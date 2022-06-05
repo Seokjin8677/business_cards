@@ -56,7 +56,7 @@ public class MainController {
     public String signup(@Valid SignupForm signupForm, BindingResult bindingResult) {
         signupValidate(signupForm, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "/signupPage";
+            return "signupPage";
         }
         memberService.signup(signupForm);
         return "redirect:/signin";

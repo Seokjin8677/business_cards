@@ -36,7 +36,7 @@ public class CardController {
         Page<CardInfoDto> productInfo = cardService.findCardInfoPages(page);
         PageableList<CardInfoDto> pageableList = new PageableList<>(productInfo);
         model.addAttribute("pageableList", pageableList);
-        return "/cardList";
+        return "cardList";
     }
 
     @GetMapping("/cards/create")
@@ -71,7 +71,7 @@ public class CardController {
         } catch (CardNotFoundException e) {
             return "redirect:/cards";
         }
-        return "/cardDetail";
+        return "cardDetail";
     }
 
     @DeleteMapping("/cards/{cardId}")
@@ -93,7 +93,7 @@ public class CardController {
             if (card.getMember().equals(userDetails.getMember())) {
                 model.addAttribute("cardSaveForm", new CardSaveForm(card));
                 // 같으면 수정폼 이동
-                return "/cardEditForm";
+                return "cardEditForm";
             }
         } catch (CardNotFoundException e) {
             // 해당되는 카드가 없으면 리다이렉트
@@ -107,7 +107,7 @@ public class CardController {
     @PreAuthorize("hasAnyAuthority('MEMBER')")
     public String editCard(@PathVariable Long cardId, @Valid CardSaveForm cardSaveForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "/cardEditForm";
+            return "cardEditForm";
         }
         try {
             cardService.editCard(cardId, cardSaveForm);
