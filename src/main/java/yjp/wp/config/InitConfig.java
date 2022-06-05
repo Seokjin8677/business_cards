@@ -12,6 +12,7 @@ import yjp.wp.dto.CardSaveForm;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.TimeZone;
 
 @Component
 @RequiredArgsConstructor
@@ -31,7 +32,7 @@ public class InitConfig {
 
         @Transactional
         public void init() {
-
+            TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
             /*Member member = new Member("admin", "$2a$10$MRp.NI7rXfZYgqfpZgcMNO.JZEYvd8rXVBAE85JyDQCE.Yf1yn9PW", "admin");
             MemberRole role = new MemberRole(Role.ADMIN, member);
             member.getRoles().add(role);
