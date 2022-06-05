@@ -42,7 +42,7 @@ public class S3Service {
                 baos.flush();
                 InputStream is = new ByteArrayInputStream(baos.toByteArray());
 
-                String fileName =  "business_card/" + UUID.randomUUID() + multipartFile.getOriginalFilename();
+                String fileName =  "business_card/" + UUID.randomUUID();
 
                 ObjectMetadata objectMetadata = new ObjectMetadata();
                 objectMetadata.setContentLength(baos.size());
