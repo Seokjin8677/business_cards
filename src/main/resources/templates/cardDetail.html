@@ -79,12 +79,12 @@
                             <button class="btn btn-danger" type="submit">삭제</button>
                         </form>
                     </th:block>
-                    <sec:authorize access="hasRole('ADMIN')" >
+                    <th:block sec:authorize="hasAuthority('ADMIN')">
                         <button class="btn btn-primary me-md-1" th:onclick="|location.href='@{/admin/cards/edit/{id}(id=${card.getId()})}'|">수정</button>
                         <form class="row m-0" th:action="@{/admin/cards/{id}(id=${card.getId()})}" th:method="delete">
                             <button class="btn btn-danger" type="submit">삭제</button>
                         </form>
-                    </sec:authorize>
+                    </th:block>
                 </div>
                 <div class="mt-2">
                     <div class="d-flex align-items-center">
