@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import yjp.wp.domain.Card;
+import yjp.wp.domain.Role;
 import yjp.wp.dto.CardInfoDto;
 import yjp.wp.dto.CardSaveForm;
 import yjp.wp.dto.MemberInfoDto;

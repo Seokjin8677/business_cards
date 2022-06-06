@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import yjp.wp.domain.Card;
 import yjp.wp.domain.Member;
+import yjp.wp.domain.Role;
 import yjp.wp.dto.CardInfoDto;
 import yjp.wp.dto.CardSaveForm;
 import yjp.wp.dto.MemberInfoDto;
@@ -48,10 +49,20 @@ public class CardService {
     public boolean deleteCard(Long CardId, Member member) {
         Card card = findCardById(CardId);
         if (card.getMember().equals(member)) {
-            cardRepository.delete(card);
+            deleteCard(card);
             return true;
         }
         return false;
+    }
+
+    public void forceDeleteCard(Long cardId) {
+        Card card = findCardById(cardId);
+        deleteCard(card);
+    }
+
+    private void deleteCard(Card card) {
+        s3Service.deleteFile(card.getImageUrl());
+        cardRepository.delete(card);
     }
 
     public void editCard(Long cardId, CardSaveForm cardSaveForm) {
